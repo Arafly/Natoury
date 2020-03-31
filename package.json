@@ -1,0 +1,15 @@
+{
+  "name": "Natoury",
+  "version": "1.0.0",
+  "description": "Node Refresher",
+  "main": "app.js",
+  "author": "Molokof",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
