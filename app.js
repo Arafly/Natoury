@@ -1,10 +1,20 @@
 const fs = require('fs');
 const express = require('express');
 const app = express();
+const morgan = require('morgan');
 const port = 3000;
 
+// Middlewares
+app.use(morgan('dev'));
+
 app.use(express.json());
-//
+// Middleware to for the req-res pipeline
+app.use((req, res, next)=> {
+  console.log('Testing out this middleware 💪🏾');
+  next();
+})
+
+// Spinner
 const ora = require('ora');
 // const throbber = ora('Shimmy shimmy yay, shimmy yay, shimmy ya. Swalla-la-la').start();
 const throbber = ora({
@@ -17,6 +27,7 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
+// ROute Handlers
 const getAllTours = (req, res) => {
   res.status(200).json({
     status: 'Success',
@@ -106,6 +117,17 @@ app
   .get(getTour)
   .patch(updateTour)
   .delete(deleteTour)
+
+app
+  .route('/api/v1/users')
+  .get(getAllUsers)
+  .post(createUser)
+
+app
+  .route('/api/v1/users/:id')
+  .get(getUser)
+  .patch(updateUser)
+  .delete(deleteUser)
 
 // app.get('/api/v1/tours', getAllTours);
 // app.get('/api/v1/tours/:id', getTour);
