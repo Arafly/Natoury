@@ -24,7 +24,6 @@ const throbber = ora({
   interval: 300,
 }).start();
 
-
 // ROUTES
 // Mounting the Routers
 app.use('/api/v1/tours', tourRouter);
