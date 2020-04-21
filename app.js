@@ -7,9 +7,13 @@ const tourRouter = require('./routes/tourRoute')
 const userRouter = require('./routes/userRoute')
 
 // MIDDLEWARES
-app.use(morgan('dev'));
+// console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development'){
+  app.use(morgan('dev'));
+}
 
 app.use(express.json());
+app.use(express.static(`${__dirname}/public`))
 // Middleware to for the req-res pipeline
 app.use((req, res, next)=> {
   console.log('Testing out this middleware 💪🏾');
